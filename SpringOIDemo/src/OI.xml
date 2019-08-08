@@ -6,18 +6,29 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans  
                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
    
-    <bean id = "triangle" class ="Spring.OI.Demo.Triangle">
+    <bean id = "triangle" class ="Spring.OI.Demo.Triangle" name ="trianglr-name">
           <property name="PointA" ref ="point1"></property>
-          <property name="PointB" ref ="point2"></property>
-          <property name="PointC" ref ="point3"></property>
+          <property name="PointB">
+              <bean class = "Spring.OI.Demo.Point">          <!-- Inner Bean || In inner bean Id are not required-->
+                 <property name="x" value = "0"></property>
+                 <property name="y" value = "10"></property>
+              </bean>
+          </property>
+          <property name="PointC">
+              <bean class = "Spring.OI.Demo.Point">
+                 <property name="x" value = "15"></property>
+                 <property name="y" value = "0"></property>
+              </bean>
+          </property>
     </bean>
     
     <bean id = "point1" class = "Spring.OI.Demo.Point">
           <property name="x" value = "0"></property>
           <property name="y" value = "0"></property>
     </bean>
+    <alias name="triangle" alias="triangle-alias"/> <!-- alias -->
     
-    <bean id = "point2" class = "Spring.OI.Demo.Point">
+    <!--  <bean id = "point2" class = "Spring.OI.Demo.Point">
           <property name="x" value = "0"></property>
           <property name="y" value = "10"></property>
     </bean>
@@ -25,6 +36,6 @@
     <bean id = "point3" class = "Spring.OI.Demo.Point">
           <property name="x" value = "15"></property>
           <property name="y" value = "0"></property>
-    </bean>
+    </bean> -->
 
 </beans>            
